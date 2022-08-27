@@ -1,0 +1,15 @@
+syntax="proto3";
+
+package GPS;
+
+service AppController {
+  rpc Add (Number) returns (addOne);
+}
+
+message Number {
+  int32 number = 1;
+}
+
+message addOne {
+  int32 number = 1;
+}
