@@ -37,6 +37,10 @@ export class GpsService {
         }
         parsed.deviceId = data.deviceId;
         const gpsInfo: any = await this.gpsRepository.create(parsed);
-        return gpsInfo.dataValues
+        return {
+            data: gpsInfo.dataValues,
+            error: "",
+            status: 200
+        }
     }
 }
