@@ -1,14 +1,18 @@
 import { Controller, Get } from '@nestjs/common';
 import {GpsService} from "./gps.service"
 import {GrpcMethod} from "@nestjs/microservices";
-import {RESDto, REQDto} from '../GPSInterface'
+import {RESDto, REQDto} from "./dto/GPS.dto";
 
 @Controller()
 export class GpsController {
-    constructor(private readonly appService: GpsService) {}
+    constructor(private readonly GpsService: GpsService) {}
+    @GrpcMethod('GpsController', 'saveGPSData')
+    saveGPSData(data: REQDto, metadata: any): Promise<RESDto> {
+        return this.GpsService.saveGPSData(data)
+    }
 
-    @GrpcMethod('GpsController', 'safeGPSData')
-    safeGPSData(data: REQDto, metadata: any): RESDto {
-        return this.appService.safeGPSData(data)
+    @GrpcMethod('GpsController', 'getGPSData')
+    getGPSData(data: REQDto, metadata: any): Promise<{data: RESDto[]}> {
+        return this.GpsService.getGPSData(data)
     }
 }

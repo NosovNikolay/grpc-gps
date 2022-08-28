@@ -1,19 +1,28 @@
 import {Column, DataType, Model, Table} from "sequelize-typescript";
+import {GPS} from "./dto/GPS.dto";
 
 interface GPScreationAtts {
-
+    deviceId: number;
+    lat: number;
+    lon: number;
+    alt: number;
+    quality: string;
+    satellites: number;
+    hdop: number;
+    geoidal: number;
+    age: number;
+    stationID: number;
+    raw: string;
+    type: string;
 }
 
-@Table({tableName: 'devices', updatedAt: false})
-export class GPSInfo extends Model<GPSInfo, GPScreationAtts> {
+@Table({tableName: 'GPSInfo', updatedAt: false})
+export class GPSInfo extends Model<GPSInfo, GPS> {
     @Column({type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true})
     id: number;
 
     @Column({type: DataType.INTEGER, allowNull: false})
     deviceId: number;
-
-    @Column ({type: DataType.DATE})
-    createdAt: Date;
 
     @Column({type: DataType.FLOAT})
     lat: number;

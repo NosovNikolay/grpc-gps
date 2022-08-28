@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common'
 import { GpsModule } from './gps/gps.module';
 import {SequelizeModule} from "@nestjs/sequelize";
+import {GPSInfo} from "./gps/gps.model";
 
 @Module({
   imports: [GpsModule,
@@ -11,7 +12,7 @@ import {SequelizeModule} from "@nestjs/sequelize";
       username: 'postgres',
       password: 'root',
       database: 'gps',
-      models: [],
+      models: [GPSInfo],
       autoLoadModels: true
     })
   ],
