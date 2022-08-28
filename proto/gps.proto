@@ -2,14 +2,15 @@ syntax="proto3";
 
 package GPS;
 
-service AppController {
-  rpc Add (Number) returns (addOne);
+service GpsController {
+  rpc safeGPSData (Req) returns (Res);
 }
 
-message Number {
-  int32 number = 1;
+message Req {
+  string data = 1;
 }
 
-message addOne {
-  int32 number = 1;
+message Res {
+  string x = 1;
+  string y = 2;
 }
