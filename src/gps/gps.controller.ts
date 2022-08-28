@@ -1,7 +1,7 @@
 import { Controller, Get } from '@nestjs/common';
 import {GpsService} from "./gps.service"
 import {GrpcMethod} from "@nestjs/microservices";
-import {RESDto, REQDto} from "./dto/GPS.dto";
+import {RESDto, REQDto, DataArray} from "./dto/GPS.dto";
 
 @Controller()
 export class GpsController {
@@ -12,7 +12,7 @@ export class GpsController {
     }
 
     @GrpcMethod('GpsController', 'getGPSData')
-    getGPSData(data: REQDto, metadata: any): Promise<{data: RESDto[]}> {
+    getGPSData(data: REQDto, metadata: any): Promise<DataArray> {
         return this.GpsService.getGPSData(data)
     }
 }

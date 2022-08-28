@@ -1,5 +1,5 @@
 import {HttpException, Injectable} from '@nestjs/common';
-import {RESDto, REQDto} from "./dto/GPS.dto";
+import {RESDto, REQDto, DataArray} from "./dto/GPS.dto";
 import GPS from "gps";
 import {GPSInfo} from "./gps.model";
 import {InjectModel} from "@nestjs/sequelize";
@@ -10,12 +10,14 @@ export class GpsService {
     constructor(@InjectModel(GPSInfo) private gpsRepository: typeof GPSInfo) {
     }
 
-    public async getGPSData(data: REQDto): Promise<{data: RESDto[] }> {
+    public async getGPSData(data: REQDto): Promise<DataArray> {
         const deviceId = data.deviceId;
         const gpsInfo: any = await this.gpsRepository.findAll({where: {deviceId}});
         let result = gpsInfo.map((elem) => new Object( elem.dataValues))
         return {
-            data: result
+            data: result,
+            error: [''],
+            status: 200
         };
     }
 
@@ -31,7 +33,7 @@ export class GpsService {
         if (!parsed) {
             return {
                 data: null,
-                error: "Bad Request",
+                error: ["Bad Request",],
                 status: 400
             }
         }
@@ -39,7 +41,7 @@ export class GpsService {
         const gpsInfo: any = await this.gpsRepository.create(parsed);
         return {
             data: gpsInfo.dataValues,
-            error: "",
+            error: [""],
             status: 200
         }
     }

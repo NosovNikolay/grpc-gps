@@ -15,9 +15,9 @@ message GPSDataCreationAttr {
 }
 
 message saveDataRes {
-    GPSData data = 1;
-    string error = 2;
-    int32 status = 3;
+  GPSData data = 1;
+  repeated string error = 2;
+  int32 status = 3;
 }
 
 message GPSData {
@@ -44,5 +44,5 @@ message DeviceId {
 message GpsDataArray {
   repeated GPSData data = 1;
   repeated string error = 2;
+  int32 status = 3;
 }
-

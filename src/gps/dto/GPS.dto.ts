@@ -1,12 +1,18 @@
 export type RESDto = {
     data: GPS,
-    error: string
+    error: string[]
     status: number
 }
 
 export type REQDto = {
     gpsData: string,
     deviceId: number
+}
+
+export type DataArray = {
+    data: GPS[],
+    error: string[]
+    status: number
 }
 
 export type GPS = {
