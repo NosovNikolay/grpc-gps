@@ -1,4 +1,4 @@
-import {HttpException, Injectable} from '@nestjs/common';
+import {Injectable} from '@nestjs/common';
 import {RESDto, REQDto, DataArray} from "./dto/GPS.dto";
 import GPS from "gps";
 import {GPSInfo} from "./gps.model";
