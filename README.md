@@ -53,13 +53,6 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
-## Test
-
-```bash
-# e2e tests
-$ npm run test:e2e
-```
-
 ## License
 
 Nest is [MIT licensed](LICENSE).
