@@ -7,11 +7,11 @@ import {GPSInfo} from "./gps/gps.model";
     imports: [GpsModule,
         SequelizeModule.forRoot({
             dialect: 'postgres',
-            host: 'localhost',
-            port: 5432,
-            username: 'postgres',
-            password: 'root',
-            database: 'gps',
+            host: process.env.POSTGRES_HOST,
+            port: Number(process.env.POSTGRES_PORT),
+            username: process.env.POSTGRES_USER,
+            password: process.env.POSTGRES_PASSWORD,
+            database:  process.env.POSTGRES_DB,
             models: [GPSInfo],
             autoLoadModels: true
         })
