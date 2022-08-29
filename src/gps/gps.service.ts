@@ -13,7 +13,7 @@ export class GpsService {
     public async getGPSData(data: REQDto): Promise<DataArray> {
         const deviceId = data.deviceId;
         const gpsInfo: any = await this.gpsRepository.findAll({where: {deviceId}});
-        let result = gpsInfo.map((elem) => new Object( elem.dataValues))
+        let result = gpsInfo.map((elem) => new Object(elem.dataValues))
         return {
             data: result,
             error: [''],
@@ -28,8 +28,6 @@ export class GpsService {
             parsed = data
         })
         gps.update(data.gpsData);
-        // Need to fix proto
-        // Add Error/status fields
         if (!parsed) {
             return {
                 data: null,
